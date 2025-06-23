@@ -1,32 +1,65 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>مساعد ذكي</title>
-  <style>
-    body { background: #121212; color: #eee; font-family: Tahoma; text-align: center; padding: 50px; }
-    textarea { width: 80%; height: 100px; padding: 10px; font-size: 18px; border-radius: 8px; }
-    button { padding: 10px 30px; font-size: 20px; margin-top: 10px; background: #00adb5; color: white; border: none; border-radius: 8px; cursor: pointer; }
-    #response { margin-top: 30px; background: #1e1e1e; padding: 20px; border-radius: 10px; text-align: left; width: 80%; margin-left: auto; margin-right: auto; }
-  </style>
+<meta charset="UTF-8">
+<title>مساعد ذكي</title>
+<style>
+    body { 
+        background: #121212; 
+        color: #eee; 
+        font-family: Tahoma; 
+        text-align: center; 
+        padding: 50px; 
+    }
+    textarea { 
+        width: 80%; 
+        height: 100px; 
+        padding: 10px; 
+        font-size: 18px; 
+        border-radius: 8px; 
+    }
+    button { 
+        padding: 10px 30px; 
+        font-size: 20px; 
+        margin-top: 10px; 
+        background: #00adb5; 
+        color: white; 
+        border: none; 
+        border-radius: 8px; 
+        cursor: pointer; 
+    }
+    #response { 
+        margin-top: 30px; 
+        background: #ffffff; /* أبيض */
+        color: #000000; /* النص أسود ليكون واضح */
+        padding: 20px; 
+        border-radius: 10px; 
+        text-align: left; 
+        width: 80%; 
+        margin-left: auto; 
+        margin-right: auto; 
+        min-height: 100px; /* مساحة مخصصة للإجابة */
+        box-shadow: 0 0 10px rgba(0,0,0,0.5); /* ظل خفيف جميل */
+    }
+</style>
 </head>
 <body>
-  <h1>🤖 مساعد ذكي</h1>
-  <textarea id="userInput" placeholder="اكتب سؤالك هنا..."></textarea><br>
-  <button onclick="sendMessage()">إرسال</button>
-  <div id="response"></div>
+<h1>مساعد ذكي 🤖</h1>
+<textarea id="userInput" placeholder="اكتب رسالتك هنا... سلام عليكم ورحمة الله وبركاته"></textarea><br>
+<button onclick="sendMessage()">إرسال</button>
+<div id="response">إجابتك ستظهر هنا...</div> <!-- مكان الإجابة أبيض -->
 
-  <script>
-    async function sendMessage() {
-      const input = document.getElementById('userInput').value;
-      const res = await fetch('/api/chat', {
+<script>
+async function sendMessage() {
+    const input = document.getElementById('userInput').value;
+    const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: input })
-      });
-      const data = await res.json();
-      document.getElementById('response').innerText = data.reply;
-    }
-  </script>
+    });
+    const data = await res.json();
+    document.getElementById('response').innerText = data.reply;
+}
+</script>
 </body>
 </html>

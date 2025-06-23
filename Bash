@@ -1,0 +1,8 @@
+# تهيئة مشروع Node.js
+npm init -y
+
+# تثبيت الحزم الضرورية
+npm install express openai dotenv
+
+# تشغيل الخادم
+node server.js
